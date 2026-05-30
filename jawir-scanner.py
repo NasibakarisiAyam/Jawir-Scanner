@@ -66,21 +66,26 @@ def start():
           3) Comprehensive Scan (TCP Connect + SYN + UDP)
           4) Os Detection Scan + Version Detection
     """)
+#buat fungsi untuk setiap jenis scan
+    def syn(): scanner.scan(target, arguments = '-sS -p 1-1024 -v')
+    def UDP(): scanner.scan(target, arguments = '-sU -p 1-1024 -v')
+    def Comprehensive(): scanner.scan(target, arguments = '-A -p 1-1024 -v')
+    def Os_Version(): scanner.scan(target, arguments = '-O -sV -p 1-1024 -v')
 
     scan_type = int(input("Enter the scan type (1-4): "))
 
     if scan_type == 1:
         print(f"Performing SYN Scan on {target}...")
-        scanner.scan(target,arguments='-sS -p 1-1024 -v' )
+        syn()
     elif scan_type == 2:
         print(f"Performing UDP Scan on {target}...")
-        scanner.scan(target,arguments='-sU -p 1-1024 -v' )
+        UDP()
     elif scan_type == 3:
         print(f"Performing Comprehensive Scan on {target}...")
-        scanner.scan(target,arguments='-A -p 1-1024 -v' )
+        Comprehensive()
     elif scan_type == 4:
         print(f"Performing OS Detection + Version Detection Scan on {target}...")
-        scanner.scan(target,arguments='-O -sV -p 1-1024 -v' )
+        Os_Version()
     else:
         print("Invalid scan type selected. Please choose a number between 1 and 4.")
         start()
