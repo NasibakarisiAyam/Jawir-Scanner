@@ -65,12 +65,14 @@ def start():
           2) UDP Scan
           3) Comprehensive Scan (TCP Connect + SYN + UDP)
           4) Os Detection Scan + Version Detection
+          5) Vulnerability Scan
     """)
 #buat fungsi untuk setiap jenis scan
     def syn(): scanner.scan(target, arguments = '-sS -p 1-1024 -v')
     def UDP(): scanner.scan(target, arguments = '-sU -p 1-1024 -v')
     def Comprehensive(): scanner.scan(target, arguments = '-A -p 1-1024 -v')
     def Os_Version(): scanner.scan(target, arguments = '-O -sV -p 1-1024 -v')
+    def vuln_scan(): scanner.scan(target, arguments = '-O -sV --script vuln')
 
     scan_type = int(input("Enter the scan type (1-4): "))
 
@@ -86,6 +88,9 @@ def start():
     elif scan_type == 4:
         print(f"Performing OS Detection + Version Detection Scan on {target}...")
         Os_Version()
+    elif scan_type == 5:
+        print(f"Performing Vulnerability Scan on {target}...")
+        vuln_scan()
     else:
         print("Invalid scan type selected. Please choose a number between 1 and 4.")
         start()
