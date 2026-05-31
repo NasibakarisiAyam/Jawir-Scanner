@@ -74,7 +74,7 @@ def start():
     def Os_Version(): scanner.scan(target, arguments = '-O -sV -p 1-1024 -v')
     def vuln_scan(): scanner.scan(target, arguments = '-O -sV --script vuln')
 
-    scan_type = int(input("Enter the scan type (1-4): "))
+    scan_type = int(input("Enter the scan type (1-5): "))
 
     if scan_type == 1:
         print(f"Performing SYN Scan on {target}...")
